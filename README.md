@@ -11,3 +11,4 @@ Now anywhere in your command line you can type ```askai``` command.
 ```
 askai hi how are you
 ```
+![ai response](img/screenshot.png)
