@@ -8,8 +8,13 @@ def main(api_key, text_request):
     model = genai.GenerativeModel('gemini-pro')
 
     response = model.generate_content(text_request)
-    print('\n \u2665 \n')
-    print(Fore.GREEN+ response.text)
+    print('\n \u2665')
+    
+    try:
+        print(Fore.GREEN + response.text)
+    except Exception as e:
+        print(Fore.RED + f'{type(e).__name__}: {e}')
+
     print(Style.RESET_ALL) 
 
 if __name__ == '__main__':
