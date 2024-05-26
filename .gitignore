@@ -1,0 +1,5 @@
+windows/__pychache__/
+linux/__pychache__/
+linux/venv/
+windows/key.py
+.vscode/

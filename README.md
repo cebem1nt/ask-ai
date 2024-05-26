@@ -34,6 +34,6 @@ run the installation again to make it work properly.
 ## Usage
 Simply type ``askai`` followed by your query in your terminal.
 ```
-askai hi how are you
+askai 'how to customize firefox with css?'
 ```
 ![ai response](img/screenshot.png)
