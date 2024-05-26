@@ -2,6 +2,9 @@ import google.generativeai as genai
 import argparse, os, configparser
 from colorama import Style, Fore
 
+from rich.console import Console
+from rich.markdown import Markdown
+
 def get_key(dir='askai', file='key.ini') :
     config = configparser.ConfigParser()
     full_dir = os.path.expanduser(os.path.join('~', '.config', dir))
@@ -10,7 +13,7 @@ def get_key(dir='askai', file='key.ini') :
     if os.path.exists(config_file):
         config.read(config_file)
     else:
-        raise Exception('No config file. please run setup.sh file')
+        raise Exception('No config file. please run setup')
 
     if not config['KEY']:
         raise Exception(f'No key in config file: {config_file}')
@@ -22,10 +25,15 @@ def main(api_key, text_request):
     model = genai.GenerativeModel('gemini-pro')
 
     response = model.generate_content(text_request)
-    print('\n \u2665')
+    print('')
+    print('\u2665')
+    print('')
     
     try:
-        print(Fore.GREEN + response.text)
+        response_md = Markdown(response.text)
+        console = Console()
+        console.print(response_md)
+
     except Exception as e:
         print(Fore.RED + f'{type(e).__name__}: {e}')
 

@@ -3,15 +3,23 @@ import google.generativeai as genai
 from key import API_KEY
 from colorama import Style, Fore
 
+from rich.console import Console
+from rich.markdown import Markdown
+
 def main(api_key, text_request):
     genai.configure(api_key=api_key)
     model = genai.GenerativeModel('gemini-pro')
 
     response = model.generate_content(text_request)
-    print('\n \u2665')
+    print('')
+    print('\u2665')
+    print('')
     
     try:
-        print(Fore.GREEN + response.text)
+        response_md = Markdown(response.text)
+        console = Console()
+        console.print(response_md)
+
     except Exception as e:
         print(Fore.RED + f'{type(e).__name__}: {e}')
 
